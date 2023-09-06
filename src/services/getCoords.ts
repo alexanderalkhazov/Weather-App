@@ -1,27 +1,16 @@
 import { CustomPosition } from "../types/utilities types/geoLocationTypes";
 
 const getCoords = async (): Promise<CustomPosition> => {
-  if ("geolocation" in navigator) {
-    try {
-      const position = await new Promise<CustomPosition>((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition((pos) => {
-          const customPosition: CustomPosition = {
-            coords: {
-              latitude: pos.coords.latitude,
-              longitude: pos.coords.longitude,
-            },
-          };
-          resolve(customPosition);
-        }, reject);
-      });
-
-      return position;
-    } catch (error) {
-      throw new Error("Failed to get location");
-    }
-  } else {
+  if (!("geolocation" in navigator)) {
     throw new Error("Geolocation not available");
   }
+
+  return new Promise<CustomPosition>((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => resolve({ coords: { latitude: pos.coords.latitude, longitude: pos.coords.longitude } }),
+      (error) => reject(new Error(`Geolocation error: ${error.message}`))
+    );
+  });
 };
 
 export { getCoords };

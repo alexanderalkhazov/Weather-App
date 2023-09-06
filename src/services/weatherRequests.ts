@@ -10,10 +10,7 @@ const keys = [
 
 const returnKey = () => sample(keys);
 
- const getCityCodeByCoords = async (
-  latitude: number,
-  longitude: number
-) => {
+const getCityCodeByCoords = async (latitude: number, longitude: number) => {
   try {
     const requestUrl = `${API_URL}/locations/v1/cities/geoposition/search?apikey=${returnKey()}&q=${latitude},${longitude}`;
     const response = await axios.get(requestUrl);
@@ -24,7 +21,7 @@ const returnKey = () => sample(keys);
   }
 };
 
- const getAutoCompleteResults = async (query: string) => {
+const getAutoCompleteResults = async (query: string) => {
   try {
     const requestUrl = `${API_URL}/locations/v1/cities/autocomplete?apikey=${returnKey()}&q=${query}`;
     const response = await axios.get(requestUrl);
@@ -35,7 +32,7 @@ const returnKey = () => sample(keys);
   }
 };
 
- const getForecastByCityCode = async (cityCode: string) => {
+const getForecastByCityCode = async (cityCode: string) => {
   try {
     const requestUrl = `${API_URL}/forecasts/v1/daily/5day/${cityCode}?apikey=${returnKey()}`;
     const response = await axios.get(requestUrl);
@@ -46,8 +43,4 @@ const returnKey = () => sample(keys);
   }
 };
 
-export {
-  getAutoCompleteResults,
-  getCityCodeByCoords,
-  getForecastByCityCode
-}
+export { getAutoCompleteResults, getCityCodeByCoords, getForecastByCityCode };
