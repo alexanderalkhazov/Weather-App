@@ -16,7 +16,7 @@ const skillsOptions = dummyResults.map((dummy, index) => ({
 
 const CurrentLocation = () => {
 
-    const [value, setValue] = useState<DummyItem | null>(null);
+    const [value, setValue] = useState<DummyItem>(null);
     console.log(value);
 
     return (
