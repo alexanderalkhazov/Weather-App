@@ -3,8 +3,8 @@ import Forecast from "../components/Forecast/Forecast";
 
 const Forecasts = () => {
   return (
-    <Box m={5} display={'grid'} gridTemplateColumns={'1fr 1fr 1fr 1fr 1fr'}>
-        {[1,2,3,4,5].map((elm,index) => (
+    <Box display={'grid'} gridTemplateColumns={'repeat(5,1fr)'}>
+        {[1,2,3,4,5].map((_,index) => (
            <Forecast key={index} />
         ))}
     </Box>

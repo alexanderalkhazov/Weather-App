@@ -1,8 +1,9 @@
 import { Stack, Autocomplete, TextField, Box, Typography } from '@mui/material';
 import { useState } from 'react';
+import Forecast from '../components/Forecast/Forecast';
 
 
-const dummyResults = ['HTML', 'CSS', 'React']; // simulate ui to show results in autocomplete :
+const dummyResults = ['HTML', 'CSS', 'React'];
 
 type DummyItem = {
     id: number,
@@ -10,33 +11,31 @@ type DummyItem = {
 }
 
 const skillsOptions = dummyResults.map((dummy, index) => ({
-    id: index + 1,
+    id: index,
     label: dummy
 }))
 
 const CurrentLocation = () => {
 
-    const [value, setValue] = useState<DummyItem>(null);
-    console.log(value);
+    const [value, setValue] = useState<DummyItem | null>(null);
 
     return (
         <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-            <Box>
-                <Typography variant='h6'>Search By Location</Typography>
-            </Box>
             <Stack
                 spacing={2}
                 width={250}
+                mt={5}
             >
+                <Typography variant='h6'>Search your city</Typography>
                 <Autocomplete
                     options={skillsOptions}
                     renderInput={(params) => (<TextField {...params} />)}
                     value={value}
-                    onChange={(event, value) => setValue(value)}
+                    onChange={(_, value) => setValue(value)}
                 />
             </Stack>
-            <Box>
-                Some Data will be here
+            <Box width={400} height={400}>
+                <Forecast />
             </Box>
         </Box>
 

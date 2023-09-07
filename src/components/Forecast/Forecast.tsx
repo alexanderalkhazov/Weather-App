@@ -1,12 +1,22 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import {
+    Box,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardMedia, IconButton,
+    Typography
+} from '@mui/material';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+
 
 const Forecast = () => {
     return (
-        <Box width={'250px'}>
+        <Box m={1}>
             <Card>
                 <CardMedia
                     component={'img'}
-                    height={'140px'}
+                    height={'30%'}
                     image='https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png'
                     alt='image'
                 />
@@ -14,8 +24,6 @@ const Forecast = () => {
                     <Typography
                         gutterBottom
                         variant='h5'
-                        component={'div'}
-
                     >
                         Weather
                     </Typography>
@@ -23,12 +31,14 @@ const Forecast = () => {
                         variant='body2'
                         color={'text.secondary'}
                     >
-                        Weather is :
+                        Weather is : Nice
                     </Typography>
                 </CardContent>
                 <CardActions>
                     <Button size='small'>Check out More</Button>
-                    <Button size='small'>Set As Fav</Button>
+                    <IconButton size='small'>
+                        <ThumbUpIcon />
+                    </IconButton>
                 </CardActions>
             </Card>
         </Box>
