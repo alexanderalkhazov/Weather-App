@@ -7,6 +7,7 @@ import {
     Button,
     Menu,
     MenuItem,
+    Switch,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import CloudIcon from '@mui/icons-material/Cloud';
@@ -50,12 +51,13 @@ const Navbar = () => {
                         onClick={handleClick}
                         aria-controls={open ? 'resources-menu' : undefined}
                         aria-haspopup={true}
-                        aria-expanded={open ? true : undefined}
+                        aria-expanded={open ? true : false}
                         endIcon={<KeyboardArrowDownIcon />}
                     >
                         Options
                     </Button>
-                    <Button onClick={handleCLose}>Theme</Button>
+                    <Switch aria-label='switch' onClick={handleCLose} />
+                    
                 </Stack>
                 <Menu id='resources-menu' anchorEl={anchor} open={open} MenuListProps={{
                     'aria-labelledby': 'resources-button',
