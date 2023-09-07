@@ -6,13 +6,13 @@ import {
     Stack,
     Button,
     Menu,
-    MenuItem,
-    Switch,
+    MenuItem
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import CloudIcon from '@mui/icons-material/Cloud';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useState } from 'react';
+import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 
 const Navbar = () => {
 
@@ -23,16 +23,21 @@ const Navbar = () => {
         setAnchor(event.currentTarget);
     }
 
-    const handleCLose = () => {
+    const handleClose = () => {
         setAnchor(null);
     }
 
     return (
-        <AppBar position='static' sx={{
-            backgroundColor: 'lightblue'
-        }}>
+        <AppBar
+            position='static'
+        >
             <Toolbar>
-                <IconButton size='large' edge='start' color='inherit' aria-label='logo'>
+                <IconButton
+                    size='large'
+                    edge='start'
+                    color='inherit'
+                    aria-label='logo'
+                >
                     <CloudIcon />
                 </IconButton>
                 <Typography
@@ -44,7 +49,10 @@ const Navbar = () => {
                 >
                     Weather App
                 </Typography>
-                <Stack direction={'row'} spacing={2}>
+                <Stack
+                    direction={'row'}
+                    spacing={2}
+                >
                     <Button
                         color='inherit'
                         id='resources-button'
@@ -56,13 +64,16 @@ const Navbar = () => {
                     >
                         Options
                     </Button>
-                    <Switch aria-label='switch' onClick={handleCLose} />
-                    
+                    <ThemeSwitch />
                 </Stack>
-                <Menu id='resources-menu' anchorEl={anchor} open={open} MenuListProps={{
-                    'aria-labelledby': 'resources-button',
-                }}
-                    onClose={handleCLose}
+                <Menu
+                    id='resources-menu'
+                    anchorEl={anchor}
+                    open={open}
+                    MenuListProps={{
+                        'aria-labelledby': 'resources-button',
+                    }}
+                    onClose={handleClose}
                     anchorOrigin={{
                         vertical: 'bottom',
                         horizontal: 'right'
@@ -72,19 +83,43 @@ const Navbar = () => {
                         horizontal: 'right'
                     }}
                 >
-                    <MenuItem onClick={handleCLose}>
-                        <Link to={'/'}>
-                            <Button color='inherit'>Current Location</Button>
+                    <MenuItem
+                        onClick={handleClose}
+                    >
+                        <Link
+                            to={'/'}
+                        >
+                            <Button
+                                color='inherit'
+                            >
+                                Current Location
+                            </Button>
                         </Link>
                     </MenuItem>
-                    <MenuItem onClick={handleCLose}>
-                        <Link to={'favourites'}>
-                            <Button color='inherit'>Favourites</Button>
+                    <MenuItem
+                        onClick={handleClose}
+                    >
+                        <Link
+                            to={'favourites'}
+                        >
+                            <Button
+                                color='inherit'
+                            >
+                                Favourites
+                            </Button>
                         </Link>
                     </MenuItem>
-                    <MenuItem onClick={handleCLose}>
-                        <Link to={'/forecasts'}>
-                            <Button color='inherit'>5 Day Forecast</Button>
+                    <MenuItem
+                        onClick={handleClose}
+                    >
+                        <Link
+                            to={'/forecasts'}
+                        >
+                            <Button
+                                color='inherit'
+                            >
+                                5 Day Forecast
+                            </Button>
                         </Link>
                     </MenuItem>
                 </Menu>

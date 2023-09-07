@@ -2,7 +2,6 @@ import { Stack, Autocomplete, TextField, Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import Forecast from '../components/Forecast/Forecast';
 
-
 const dummyResults = ['HTML', 'CSS', 'React'];
 
 type DummyItem = {
