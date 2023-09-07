@@ -1,38 +1,20 @@
-import { useEffect, useState } from 'react';
-import { getCoords } from './services/getCoords';
-import { getCityCodeByCoords, getForecastByCityCode } from './services/weatherRequests';
 import './App.css';
-
-// Initial Project skeleton to see if everything works correctly. 
-// primarily to test the overall functionality.
-// next steps adding the store and creating the components.
+import Navbar from './components/Navbar/Navbar';
+import {Routes, Route} from 'react-router-dom';
+import CurrentLocation from './pages/CurrentLocation';
+import Favourites from './pages/Favourites';
+import Forecasts from './pages/Forecasts';
 
 const App = () => {
 
-  const [data, setData] = useState<any[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const coords = await getCoords();
-      console.log(coords.coords);
-      const cityCode = await getCityCodeByCoords(coords.coords.latitude, coords.coords.longitude);
-      console.log(cityCode.Key);
-      const forecast = await getForecastByCityCode(cityCode.Key);
-      console.log(forecast);
-      setData(forecast.DailyForecasts);
-    })();
-  }, []);
-
   return (
     <>
-      <header>Weather App</header>
-      <nav>
-
-      </nav>
-      <main>
-        {data.map(forecast => (<p>{forecast.Temperature.Maximum.Value}</p>))}
-      </main>
-
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<CurrentLocation />}/>
+        <Route path='/favourites' element={<Favourites />}/>
+        <Route path='/forecasts' element={<Forecasts />}/>
+      </Routes>
     </>
   )
 }
