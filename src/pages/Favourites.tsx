@@ -1,5 +1,6 @@
-import { Box } from "@mui/material"
-import Forecast from "../components/Forecast/Forecast"
+import Forecast from "../components/Forecast/Forecast";
+import { Box } from "@mui/material";
+
 const Favourites = () => {
     return (
         <Box m={5} display={'grid'} gridTemplateColumns={'repeat(5,1fr)'}>
@@ -8,6 +9,6 @@ const Favourites = () => {
             ))}
         </Box>
     )
-}
+};
 
-export default Favourites
+export default Favourites;

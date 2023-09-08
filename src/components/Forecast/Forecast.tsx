@@ -36,7 +36,9 @@ const Forecast = () => {
                 </CardContent>
                 <CardActions>
                     <Button size='small'>Check out More</Button>
-                    <IconButton size='small'>
+                    <IconButton
+                        size='small'
+                    >
                         <ThumbUpIcon />
                     </IconButton>
                 </CardActions>

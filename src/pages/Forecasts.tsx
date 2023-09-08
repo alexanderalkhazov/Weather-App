@@ -9,6 +9,6 @@ const Forecasts = () => {
         ))}
     </Box>
   )
-}
+};
 
-export default Forecasts
+export default Forecasts;

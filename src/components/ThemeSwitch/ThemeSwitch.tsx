@@ -1,16 +1,15 @@
 import { Switch } from "@mui/material";
+import { toggleTheme } from "../../features/themeSlice";
 import { useDispatch } from "react-redux";
-import { toggleTheme } from "../../slices/themeSlice";
 
 const ThemeSwitch = () => {
 
     const dispatch = useDispatch();
-
     return (
-        <>
-            <Switch aria-label='switch' onClick={() => dispatch(toggleTheme())}/>
-        </>
+        <Switch
+            onClick={() => dispatch(toggleTheme())}
+        />
     )
-}
+};
 
-export default ThemeSwitch
+export default ThemeSwitch;
