@@ -7,11 +7,11 @@ import Forecasts from './pages/Forecasts';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Box, ThemeProvider } from '@mui/material';
 import { lightTheme, darkTheme } from './theme/themes';
-import { useSelector } from 'react-redux';
+import { getCurrentTheme } from './features/themeSlice';
 
 const App = () => {
 
-  const currentTheme = useSelector((state: any) => state.themeSet.theme);
+  const currentTheme = getCurrentTheme();
  
   return (
     <Box>

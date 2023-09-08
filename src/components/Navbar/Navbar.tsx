@@ -27,6 +27,21 @@ const Navbar = () => {
         setAnchor(null);
     }
 
+    const menuItemList = [
+        {
+            link: '/',
+            linkText: 'Current Location',
+        },
+        {
+            link: '/favourites',
+            linkText: 'Favourites',
+        },
+        {
+            link: '/forecasts',
+            linkText: '5 Day Forecast',
+        }
+    ]
+
     return (
         <AppBar
             position='static'
@@ -56,10 +71,7 @@ const Navbar = () => {
                     <Button
                         color='inherit'
                         id='resources-button'
-                        onClick={handleClick}
-                        aria-controls={open ? 'resources-menu' : undefined}
-                        aria-haspopup={true}
-                        aria-expanded={open ? true : false}
+                        onClick={handleClick}          
                         endIcon={<KeyboardArrowDownIcon />}
                     >
                         Options
@@ -83,45 +95,22 @@ const Navbar = () => {
                         horizontal: 'right'
                     }}
                 >
-                    <MenuItem
-                        onClick={handleClose}
-                    >
-                        <Link
-                            to={'/'}
+                    {menuItemList.map((menuItemObj) => (
+                        <MenuItem
+                            onClick={handleClose}
+                            key={menuItemObj.link}
                         >
-                            <Button
-                                color='inherit'
+                            <Link
+                                to={menuItemObj.link}
                             >
-                                Current Location
-                            </Button>
-                        </Link>
-                    </MenuItem>
-                    <MenuItem
-                        onClick={handleClose}
-                    >
-                        <Link
-                            to={'favourites'}
-                        >
-                            <Button
-                                color='inherit'
-                            >
-                                Favourites
-                            </Button>
-                        </Link>
-                    </MenuItem>
-                    <MenuItem
-                        onClick={handleClose}
-                    >
-                        <Link
-                            to={'/forecasts'}
-                        >
-                            <Button
-                                color='inherit'
-                            >
-                                5 Day Forecast
-                            </Button>
-                        </Link>
-                    </MenuItem>
+                                <Button
+                                    color='inherit'
+                                >
+                                    {menuItemObj.linkText}
+                                </Button>
+                            </Link>
+                        </MenuItem>
+                    ))}
                 </Menu>
             </Toolbar>
         </AppBar>
