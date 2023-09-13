@@ -8,12 +8,11 @@ import {
     Typography
 } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import { DailyForecast } from '../../common/forecastTypes';
-import { formatDate } from './forecastHelpers';
-import { selectUnits } from '../../features/unitsSlice';
-import { useSelector } from 'react-redux';
-import { setTempAndUnits } from './forecastHelpers';
-import { UnitsEnum } from '../../common/Enums';
+import { DailyForecast } from '../../common/types/forecastTypes';
+import { formatDate } from '../../helpers/forecastHelpers';
+import { selectUnits } from '../../state/state slices/unitsSlice';
+import { setTempAndUnits } from '../../helpers/forecastHelpers';
+import { useAppSelector } from '../../state/store/store';
 
 interface ForecastProps {
     forecast?: DailyForecast;
@@ -21,7 +20,7 @@ interface ForecastProps {
 
 const Forecast = ({ forecast }: ForecastProps) => {
 
-    const units = useSelector(selectUnits);
+    const units = useAppSelector(selectUnits);
 
     return (
         forecast ? (

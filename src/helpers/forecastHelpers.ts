@@ -1,5 +1,5 @@
 import { format } from "date-fns-tz";
-import { UnitsEnum } from "../../common/Enums";
+import { UnitsEnum } from "../common/types/enums";
 
 const formatDate = (dateString: string) => {
   const formatString = "dd-MM-yyyy";

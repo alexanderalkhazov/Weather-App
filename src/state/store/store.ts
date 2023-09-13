@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import themeReducder from '../features/themeSlice';
-import forecastsReducer from '../features/forecastsSlice';
-import unitsReducer from '../features/unitsSlice'
+import themeReducder from '../state slices/themeSlice';
+import forecastsReducer from '../state slices/forecastsSlice';
+import unitsReducer from '../state slices/unitsSlice'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { sample } from "lodash";
-import { CustomPosition } from "../common/geoLocationTypes";
+import { CustomPosition } from "../common/types/geoLocationTypes";
 
 const API_URL = `http://dataservice.accuweather.com`;
 

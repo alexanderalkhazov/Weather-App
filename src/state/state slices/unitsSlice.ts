@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UnitsEnum } from '../common/Enums';
+import { UnitsEnum } from '../../common/types/enums';
 
 interface UnitsState {
   units: UnitsEnum.Celsius | UnitsEnum.Fahrenheit;

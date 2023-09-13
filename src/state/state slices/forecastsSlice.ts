@@ -2,10 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getCityCodeByCoords,
   getForecastByCityCode,
-} from "../services/weatherRequests";
-import { WeatherData } from "../common/forecastTypes";
-import { getCoords } from "../services/getCoords";
-import { LocationKey } from "../common/locationKeyTypes";
+} from "../../services/weatherRequests";
+import { WeatherData } from "../../common/types/forecastTypes";
+import { getCoords } from "../../services/getCoords";
+import { LocationKey } from "../../common/types/locationKeyTypes";
 
 export const fetchForecastsThunk = createAsyncThunk(
   "fetchForecastsThunk",

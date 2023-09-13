@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ThemeState } from "../common/stateTypes";
-import { ThemeEnum } from "../common/Enums";
+import { ThemeState } from "../../common/types/stateTypes";
+import { ThemeEnum } from "../../common/types/enums";
 
 const initialTheme: ThemeState = {
   theme: ThemeEnum.Light,
