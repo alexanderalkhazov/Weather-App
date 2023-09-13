@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ThemeState } from "../types/state types/stateTypes";
-import { useSelector } from "react-redux";
+import { ThemeState } from "../common/stateTypes";
 
 const initialTheme: ThemeState = {
     theme: 'light',
@@ -8,7 +7,7 @@ const initialTheme: ThemeState = {
 
 const setCorrectTheme = (state: ThemeState): ThemeState => {
     return (state.theme === 'light' ? {...state, theme: 'dark'} : {...state,theme:'light'}) as ThemeState;
-}
+};
 
 const themeSlice = createSlice({
     name: 'theme',
@@ -16,17 +15,15 @@ const themeSlice = createSlice({
     reducers: {
         toggleTheme: setCorrectTheme,
     }
-})
+});
 
 const { toggleTheme } = themeSlice.actions; 
 
-const getCurrentTheme = () => {
-    return useSelector((state: any) => state.themeSet.theme);
-}
+const selectCurrentTheme = (state: any) => state.themeReducer.theme;
 
 export {
-    getCurrentTheme,
+    selectCurrentTheme,
     toggleTheme
-}
+};
 
 export default themeSlice.reducer; // themeReducer name

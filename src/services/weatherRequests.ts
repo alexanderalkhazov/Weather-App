@@ -1,5 +1,7 @@
 import axios from "axios";
 import { sample } from "lodash";
+import { WeatherData } from "../common/forecastTypes";
+import { CustomPosition } from "../common/geoLocationTypes";
 
 const API_URL = `http://dataservice.accuweather.com`;
 
@@ -10,7 +12,10 @@ const keys = [
 
 const returnKey = () => sample(keys);
 
-const getCityCodeByCoords = async (latitude: number, longitude: number) => {
+const getCityCodeByCoords = async (geoLoaction: CustomPosition) => {
+  const { coords } = geoLoaction;
+  const { latitude } = coords;
+  const { longitude } = coords;
   try {
     const requestUrl = `${API_URL}/locations/v1/cities/geoposition/search?apikey=${returnKey()}&q=${latitude},${longitude}`;
     const response = await axios.get(requestUrl);

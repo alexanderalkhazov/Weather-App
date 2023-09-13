@@ -5,14 +5,13 @@ import {
     Typography,
     Stack,
     Button,
-    Menu,
-    MenuItem
+    Menu
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 import CloudIcon from '@mui/icons-material/Cloud';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useState } from 'react';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
+import { renderNavItems } from './navbarHelpers';
 
 const Navbar = () => {
 
@@ -27,21 +26,6 @@ const Navbar = () => {
         setAnchor(null);
     }
 
-    const menuItemList = [
-        {
-            link: '/',
-            linkText: 'Current Location',
-        },
-        {
-            link: '/favourites',
-            linkText: 'Favourites',
-        },
-        {
-            link: '/forecasts',
-            linkText: '5 Day Forecast',
-        }
-    ]
-
     return (
         <AppBar
             position='static'
@@ -51,7 +35,6 @@ const Navbar = () => {
                     size='large'
                     edge='start'
                     color='inherit'
-                    aria-label='logo'
                 >
                     <CloudIcon />
                 </IconButton>
@@ -71,7 +54,7 @@ const Navbar = () => {
                     <Button
                         color='inherit'
                         id='resources-button'
-                        onClick={handleClick}          
+                        onClick={handleClick}
                         endIcon={<KeyboardArrowDownIcon />}
                     >
                         Options
@@ -95,22 +78,7 @@ const Navbar = () => {
                         horizontal: 'right'
                     }}
                 >
-                    {menuItemList.map((menuItemObj) => (
-                        <MenuItem
-                            onClick={handleClose}
-                            key={menuItemObj.link}
-                        >
-                            <Link
-                                to={menuItemObj.link}
-                            >
-                                <Button
-                                    color='inherit'
-                                >
-                                    {menuItemObj.linkText}
-                                </Button>
-                            </Link>
-                        </MenuItem>
-                    ))}
+                    {renderNavItems(handleClose)}
                 </Menu>
             </Toolbar>
         </AppBar>

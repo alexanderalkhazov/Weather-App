@@ -6,7 +6,7 @@ const Favourites = () => {
         <Box m={5} display={'grid'} gridTemplateColumns={'repeat(5,1fr)'}>
             {[1,2].map((_, index) => (
                 <Forecast key={index} />
-            ))}
+            ))} 
         </Box>
     )
 };
