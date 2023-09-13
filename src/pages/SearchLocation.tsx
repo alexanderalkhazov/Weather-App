@@ -14,7 +14,7 @@ const skillsOptions = dummyResults.map((dummy, index) => ({
     label: dummy
 }));
 
-const CurrentLocation = () => {
+const SearchLocation = () => {
 
     const [value, setValue] = useState<DummyItem | null>(null);
 
@@ -52,4 +52,4 @@ const CurrentLocation = () => {
     )
 };
 
-export default CurrentLocation;
+export default SearchLocation;

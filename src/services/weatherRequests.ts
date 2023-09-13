@@ -1,6 +1,5 @@
 import axios from "axios";
 import { sample } from "lodash";
-import { WeatherData } from "../common/forecastTypes";
 import { CustomPosition } from "../common/geoLocationTypes";
 
 const API_URL = `http://dataservice.accuweather.com`;
@@ -39,7 +38,7 @@ const getAutoCompleteResults = async (query: string) => {
 
 const getForecastByCityCode = async (cityCode: string) => {
   try {
-    const requestUrl = `${API_URL}/forecasts/v1/daily/5day/${cityCode}?apikey=${returnKey()}`;
+    const requestUrl = `${API_URL}/forecasts/v1/daily/5day/${cityCode}?apikey=${returnKey()}&metric=true`;
     const response = await axios.get(requestUrl);
     return response.data;
   } catch (err) {

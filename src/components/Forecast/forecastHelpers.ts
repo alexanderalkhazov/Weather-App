@@ -1,4 +1,5 @@
 import { format } from "date-fns-tz";
+import { UnitsEnum } from "../../common/Enums";
 
 const formatDate = (dateString: string) => {
   const formatString = "dd-MM-yyyy";
@@ -10,6 +11,17 @@ const formatDate = (dateString: string) => {
 };
 
 
-export { 
-    formatDate
-}
+const setTempAndUnits = (celsiusValue: number, currentUnitState: string) => {
+  let modifiedFarenheit = `${Math.round(((celsiusValue * (9/5)) + (32)))} °F`;
+  let modifiedCelsius = `${Math.round(celsiusValue)} °C`;
+  switch (currentUnitState) {
+    case UnitsEnum.Celsius:
+      return modifiedCelsius;
+    case UnitsEnum.Fahrenheit:
+      return modifiedFarenheit;
+    default:
+      modifiedCelsius;
+  }
+};
+
+export { formatDate, setTempAndUnits };

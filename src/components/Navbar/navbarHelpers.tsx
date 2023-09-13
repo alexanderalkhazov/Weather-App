@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const menuItemList = [
     {
         link: '/',
-        linkText: 'Current Location',
+        linkText: 'Search Location',
     },
     {
         link: '/favourites',
