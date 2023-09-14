@@ -10,12 +10,18 @@ import {
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { DailyForecast } from '../../common/forecastTypes';
 import { formatDate } from './forecastHelpers';
+import { selectUnits } from '../../features/unitsSlice';
+import { useSelector } from 'react-redux';
+import { setTempAndUnits } from './forecastHelpers';
+import { UnitsEnum } from '../../common/Enums';
 
 interface ForecastProps {
     forecast?: DailyForecast;
 }
 
 const Forecast = ({ forecast }: ForecastProps) => {
+
+    const units = useSelector(selectUnits);
 
     return (
         forecast ? (
@@ -38,19 +44,13 @@ const Forecast = ({ forecast }: ForecastProps) => {
                             variant='body2'
                             color={'text.secondary'}
                         >
-                            Minimum Temp : {forecast.Temperature.Minimum.Value}
+                            Minimum Temp : {setTempAndUnits(forecast.Temperature.Minimum.Value, units)}
                         </Typography>
                         <Typography
                             variant='body2'
                             color={'text.secondary'}
                         >
-                            Maximum Temp : {forecast.Temperature.Maximum.Value}
-                        </Typography>
-                        <Typography
-                            variant='body2'
-                            color={'text.secondary'}
-                        >
-                            Units is : {forecast.Temperature.Minimum.Unit}
+                            Maximum Temp : {setTempAndUnits(forecast.Temperature.Maximum.Value, units)}
                         </Typography>
                         <Typography
                             variant='body2'

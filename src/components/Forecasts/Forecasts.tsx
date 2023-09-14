@@ -8,25 +8,24 @@ import Forecast from '../Forecast/Forecast';
 
 const Forecasts = () => {
 
-  const dispatch = useAppDispatch()
-  const forecasts: WeatherData = useAppSelector(selectAllForecasts);
+  // const dispatch = useAppDispatch()
+  // const forecasts: WeatherData = useAppSelector(selectAllForecasts);
   
 
-  const getAllForecasts = async () => {
-      dispatch(fetchForecastsThunk());
-  }
+  // const getAllForecasts = async () => {
+  //     dispatch(fetchForecastsThunk());
+  // }
 
-  useEffect(() => {
-     getAllForecasts();
-
-  }, [])
+  // useEffect(() => {
+  //    getAllForecasts();
+  // }, [])
 
   return (
 
     <>
-      {forecasts ? forecasts.DailyForecasts.map((forecast) => (
+      {/* {forecasts ? forecasts.DailyForecasts.map((forecast) => (
         <Forecast key={forecast.Date} forecast={forecast} />
-      )): null}
+      )): null} */}
     </>
 
   )
