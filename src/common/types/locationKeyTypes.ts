@@ -1,3 +1,4 @@
-export interface LocationKey {
+export interface Location {
   Key: string;
+  LocalizedName: string;
 }

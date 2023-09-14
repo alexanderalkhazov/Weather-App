@@ -5,15 +5,11 @@ import { Link } from 'react-router-dom';
 const menuItemList = [
     {
         link: '/',
-        linkText: 'Search Location',
-    },
-    {
-        link: '/favourites',
         linkText: 'Favourites',
     },
     {
         link: '/forecasts',
-        linkText: '5 Day Forecast',
+        linkText: 'Weather',
     }
 ]
 

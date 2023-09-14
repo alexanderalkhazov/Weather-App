@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import themeReducder from '../state slices/themeSlice';
-import forecastsReducer from '../state slices/forecastsSlice';
+import forecastsReducer from '../state slices/weatherSlice';
 import unitsReducer from '../state slices/unitsSlice'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
@@ -13,6 +13,9 @@ export const store = configureStore({
         // currentlocation reducer 
     }
 });
+
+console.log(store.getState());
+
 
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,18 +1,17 @@
 
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../state/store/store';
-import { fetchForecastsThunk, selectAllForecasts } from "../../state/state slices/forecastsSlice";
-import { WeatherData } from '../../common/types/forecastTypes';
+import { fetchForecastsThunk, selectAllForecasts } from "../../state/state slices/weatherSlice";
 import Forecast from '../Forecast/Forecast';
 
 const Forecasts = () => {
 
   const dispatch = useAppDispatch()
-  const forecasts: WeatherData = useAppSelector(selectAllForecasts);
+  const forecasts = useAppSelector(selectAllForecasts);
   
 
   const getAllForecasts = async () => {
-      dispatch(fetchForecastsThunk());
+      dispatch(fetchForecastsThunk(''));
   }
 
   useEffect(() => {
