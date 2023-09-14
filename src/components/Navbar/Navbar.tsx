@@ -10,8 +10,9 @@ import {
 import CloudIcon from '@mui/icons-material/Cloud';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useState } from 'react';
-import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
-import { renderNavItems } from './navbarHelpers';
+import { renderNavItems } from '../../helpers/navbarHelpers';
+import Switcher from '../Switch/Switch';
+import { toggleTheme } from '../../state/state slices/themeSlice';
 
 const Navbar = () => {
 
@@ -59,7 +60,7 @@ const Navbar = () => {
                     >
                         Options
                     </Button>
-                    <ThemeSwitch />
+                    <Switcher switchFunction={toggleTheme} />
                 </Stack>
                 <Menu
                     id='resources-menu'

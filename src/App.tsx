@@ -5,12 +5,13 @@ import Favourites from './pages/Favourites';
 import ForecastsPage from './pages/ForecastsPage';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Box, ThemeProvider } from '@mui/material';
-import { lightTheme, darkTheme } from './themes/themes';
-import { selectCurrentTheme } from './features/themeSlice';
+import { lightTheme, darkTheme } from './common/themes/themes';
+import { selectCurrentTheme } from './state/state slices/themeSlice';
 import { useSelector } from 'react-redux';
+import { ThemeEnum } from './common/types/enums';
+import Switcher from './components/Switch/Switch';
+import { toggleUnits } from './state/state slices/unitsSlice';
 import './App.css';
-import UnitsSwitch from './components/UnitsSwitch/UnitsSwitch';
-import { ThemeEnum } from './common/Enums';
 
 const App = () => {
   const currentTheme = useSelector(selectCurrentTheme);
@@ -20,8 +21,14 @@ const App = () => {
       <ThemeProvider theme={currentTheme === ThemeEnum.Light ? lightTheme : darkTheme}>
         <CssBaseline />
         <Navbar />
-        Units Switch:
-        <UnitsSwitch />
+        <Box
+          display={'flex'}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          Switch Units:
+          <Switcher switchFunction={toggleUnits} />
+        </Box>
         <Routes>
           <Route path='/' element={<SearchLocation />} />
           <Route path='/favourites' element={<Favourites />} />

@@ -1,4 +1,4 @@
-import { CustomPosition } from "../common/geoLocationTypes";
+import { CustomPosition } from "../common/types/geoLocationTypes";
 
 const getCoords = async (): Promise<CustomPosition> => {
   if (!("geolocation" in navigator)) {
