@@ -28,4 +28,4 @@ const selectCurrentTheme = (state: any) => state.themeReducer.theme;
 
 export { selectCurrentTheme, toggleTheme };
 
-export default themeSlice.reducer; // themeReducer name
+export default themeSlice.reducer; 

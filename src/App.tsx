@@ -1,37 +1,37 @@
 import Navbar from './components/Navbar/Navbar';
 import { Routes, Route } from 'react-router-dom';
-import SearchLocation from './pages/SearchLocation';
+import SearchLocation from './components/SearchLocation/SearchLocation';
 import Favourites from './pages/Favourites';
 import ForecastsPage from './pages/ForecastsPage';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Box, ThemeProvider } from '@mui/material';
 import { lightTheme, darkTheme } from './common/themes/themes';
 import { selectCurrentTheme } from './state/state slices/themeSlice';
-import { useSelector } from 'react-redux';
 import { ThemeEnum } from './common/types/enums';
 import Switcher from './components/Switch/Switch';
 import { toggleUnits } from './state/state slices/unitsSlice';
 import './App.css';
+import { useAppSelector } from './state/store/store';
 
 const App = () => {
-  const currentTheme = useSelector(selectCurrentTheme);
+  const currentTheme = useAppSelector(selectCurrentTheme);
 
   return (
     <Box>
       <ThemeProvider theme={currentTheme === ThemeEnum.Light ? lightTheme : darkTheme}>
         <CssBaseline />
         <Navbar />
+        <SearchLocation />
         <Box
           display={'flex'}
           justifyContent={'center'}
           alignItems={'center'}
         >
-          Switch Units:
+          <p>Switch Units:</p>
           <Switcher switchFunction={toggleUnits} />
         </Box>
         <Routes>
-          <Route path='/' element={<SearchLocation />} />
-          <Route path='/favourites' element={<Favourites />} />
+          <Route path='/' element={<Favourites />} />
           <Route path='/forecasts' element={<ForecastsPage />} />
         </Routes>
       </ThemeProvider>

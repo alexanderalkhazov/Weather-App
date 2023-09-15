@@ -1,5 +1,7 @@
 import { format } from "date-fns-tz";
 import { UnitsEnum } from "../common/types/enums";
+import { Location } from "../common/types/locationKeyTypes";
+import { nanoid } from "@reduxjs/toolkit";
 
 const formatDate = (dateString: string) => {
   const formatString = "dd-MM-yyyy";
@@ -10,6 +12,14 @@ const formatDate = (dateString: string) => {
   return formattedDate;
 };
 
+const modifyOptions = (locations: Location[]) => {
+  if (!locations) return [];
+  return locations.map((location: Location,index: number) => ({
+      id: index + 1,
+      label: location.LocalizedName,
+      cityKey: location.Key
+  }))
+}
 
 const setTempAndUnits = (celsiusValue: number, currentUnitState: string) => {
   let modifiedFarenheit = `${Math.round(((celsiusValue * (9/5)) + (32)))} °F`;
@@ -24,4 +34,4 @@ const setTempAndUnits = (celsiusValue: number, currentUnitState: string) => {
   }
 };
 
-export { formatDate, setTempAndUnits };
+export { formatDate, setTempAndUnits, modifyOptions };
