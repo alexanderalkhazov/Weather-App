@@ -9,8 +9,6 @@ export const store = configureStore({
         themeReducer: themeReducder,
         forecastsReducer: forecastsReducer,
         unitsReducer: unitsReducer
-        // favouritesReducer
-        // currentlocation reducer 
     }
 });
 

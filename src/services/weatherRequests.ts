@@ -2,26 +2,24 @@ import axios from "axios";
 import { sample } from "lodash";
 import { CustomPosition } from "../common/types/geoLocationTypes";
 
-const API_URL = `http://dataservice.accuweather.com`;
+const API_URL = 'http://dataservice.accuweather.com';
 
 const keys = [
   "dZGbngzuriVeCTAlBNBaATU1aKGzgIwL",
-  // more keys will be added soon.
+  "wiTcFiz9vubqECBVWikv5rWFJrl4KoaD",
 ];
 
 const returnKey = () => sample(keys);
 
 const getCityCodeByCoords = async (geoLoaction: CustomPosition) => {
-  const { coords } = geoLoaction;
-  const { latitude } = coords;
-  const { longitude } = coords;
+  const { coords: {latitude,longitude }} = geoLoaction;
   try {
     const requestUrl = `${API_URL}/locations/v1/cities/geoposition/search?apikey=${returnKey()}&q=${latitude},${longitude}`;
     const response = await axios.get(requestUrl);
     return response.data;
   } catch (err) {
     const error = err as Error;
-    console.log(error.message);
+    console.error(error.message);
   }
 };
 
@@ -32,7 +30,7 @@ const getAutoCompleteResults = async (query: string) => {
     return response.data;
   } catch (err) {
     const error = err as Error;
-    console.log(error.message);
+    console.error(error.message);
   }
 };
 
@@ -43,7 +41,7 @@ const getForecastByCityCode = async (cityCode: string) => {
     return response.data;
   } catch (err) {
     const error = err as Error;
-    console.log(error.message);
+    console.error(error.message);
   }
 };
 

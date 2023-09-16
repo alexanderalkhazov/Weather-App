@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ThemeState } from "../../common/types/stateTypes";
 import { ThemeEnum } from "../../common/types/enums";
 
-const initialTheme: ThemeState = {
+const initialState: ThemeState = {
   theme: ThemeEnum.Light,
 };
 
@@ -11,12 +11,12 @@ const setCorrectTheme = (state: ThemeState) => {
     state.theme === ThemeEnum.Light
       ? { ...state, theme: ThemeEnum.Dark }
       : { ...state, theme: ThemeEnum.Light }
-  ) as ThemeState;
+  );
 };
 
 const themeSlice = createSlice({
   name: "theme",
-  initialState: initialTheme,
+  initialState,
   reducers: {
     toggleTheme: setCorrectTheme,
   },

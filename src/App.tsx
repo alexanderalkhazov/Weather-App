@@ -8,18 +8,19 @@ import { Box, ThemeProvider } from '@mui/material';
 import { lightTheme, darkTheme } from './common/themes/themes';
 import { selectCurrentTheme } from './state/state slices/themeSlice';
 import { ThemeEnum } from './common/types/enums';
-import Switcher from './components/Switch/Switch';
 import { toggleUnits } from './state/state slices/unitsSlice';
-import './App.css';
 import { useAppSelector } from './state/store/store';
+import Switcher from './components/Switcher/Switcher';
+import './App.css';
 
 const App = () => {
+  
   const currentTheme = useAppSelector(selectCurrentTheme);
 
   return (
     <Box>
       <ThemeProvider theme={currentTheme === ThemeEnum.Light ? lightTheme : darkTheme}>
-        <CssBaseline />
+        <CssBaseline />  
         <Navbar />
         <SearchLocation />
         <Box

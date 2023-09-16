@@ -1,11 +1,9 @@
 import { format } from "date-fns-tz";
 import { UnitsEnum } from "../common/types/enums";
 import { Location } from "../common/types/locationKeyTypes";
-import { nanoid } from "@reduxjs/toolkit";
 
 const formatDate = (dateString: string) => {
   const formatString = "dd-MM-yyyy";
-
   const formattedDate = format(new Date(dateString), formatString, {
     timeZone: "Etc/GMT+3",
   });
