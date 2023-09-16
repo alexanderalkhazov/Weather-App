@@ -3,7 +3,6 @@ import {
     Toolbar,
     IconButton,
     Typography,
-    Stack,
     Button,
     Menu
 } from '@mui/material';
@@ -11,8 +10,9 @@ import CloudIcon from '@mui/icons-material/Cloud';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useState } from 'react';
 import { renderNavItems } from '../../helpers/navbarHelpers';
-import Switcher from '../Switch/Switch';
+import Switcher from '../Switcher/Switcher';
 import { toggleTheme } from '../../state/state slices/themeSlice';
+import CurrentLocation from '../CurrentLocation/CurrentLocation';
 
 const Navbar = () => {
 
@@ -32,26 +32,23 @@ const Navbar = () => {
             position='static'
         >
             <Toolbar>
-                <IconButton
-                    size='large'
-                    edge='start'
-                    color='inherit'
-                >
-                    <CloudIcon />
-                </IconButton>
-                <Typography
-                    variant='h6'
-                    component='div'
-                    sx={{
-                        flexGrow: 1
-                    }}
-                >
-                    Weather App
-                </Typography>
-                <Stack
-                    direction={'row'}
-                    spacing={2}
-                >
+                    <IconButton
+                        size='large'
+                        edge='start'
+                        color='inherit'
+                    >
+                        <CloudIcon />
+                    </IconButton>
+                    <Typography
+                        variant='h6'
+                        component='div'
+                        sx={{
+                            flexGrow: 1
+                        }}
+                    >
+                        Weather App
+                    </Typography>
+                    <CurrentLocation />
                     <Button
                         color='inherit'
                         id='resources-button'
@@ -61,26 +58,25 @@ const Navbar = () => {
                         Options
                     </Button>
                     <Switcher switchFunction={toggleTheme} />
-                </Stack>
-                <Menu
-                    id='resources-menu'
-                    anchorEl={anchor}
-                    open={open}
-                    MenuListProps={{
-                        'aria-labelledby': 'resources-button',
-                    }}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right'
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right'
-                    }}
-                >
-                    {renderNavItems(handleClose)}
-                </Menu>
+                    <Menu
+                        id='resources-menu'
+                        anchorEl={anchor}
+                        open={open}
+                        MenuListProps={{
+                            'aria-labelledby': 'resources-button',
+                        }}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'right'
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right'
+                        }}
+                    >
+                        {renderNavItems(handleClose)}
+                    </Menu>
             </Toolbar>
         </AppBar>
     )

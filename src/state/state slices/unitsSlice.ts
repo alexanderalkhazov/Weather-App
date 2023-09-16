@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UnitsEnum } from '../../common/types/enums';
-
-interface UnitsState {
-  units: UnitsEnum.Celsius | UnitsEnum.Fahrenheit;
-}
+import { UnitsState } from "../../common/types/stateTypes";
 
 const initialState: UnitsState = {
   units: UnitsEnum.Celsius,

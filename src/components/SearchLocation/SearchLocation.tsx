@@ -1,14 +1,9 @@
-import { Stack, Autocomplete, TextField, Box, Typography } from '@mui/material';
-import Forecast from '../Forecast/Forecast';
+import { Stack, Autocomplete, TextField, Box, Typography, CircularProgress } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react';
-import { selectLocations, fetchLocationsThunk, selectLocationsStatus, fetchForecastsThunk, selectAllForecasts } from '../../state/state slices/weatherSlice';
-
+import { selectLocations, fetchLocationOptionsThunk, fetchForecastsThunk } from '../../state/state slices/weatherSlice';
 import { useAppDispatch, useAppSelector } from '../../state/store/store';
-import { Location } from '../../common/types/locationKeyTypes';
 import { debounce } from 'lodash';
 import { modifyOptions } from '../../helpers/forecastHelpers';
-import { ThunkStatusEnum } from '../../common/types/enums';
-import { nanoid } from '@reduxjs/toolkit';
 
 interface CityOption {
     id: number;
@@ -16,38 +11,35 @@ interface CityOption {
     cityKey: string;
 }
 
-
 const SearchLocation = () => {
     const dispatch = useAppDispatch();
-    const locations = useAppSelector(selectLocations);
-    // const locationStaus = useAppSelector(selectLocationsStatus);
-    
+    const locationOptions = useAppSelector(selectLocations);
     const [options, setOptions] = useState<readonly any[]>([]);
-
     const [selectedCity, setSelectedCity] = useState<CityOption | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const handleQuery = (ev: React.ChangeEvent<HTMLInputElement>) => {
+        setIsLoading(true);
         findLocationDebounce(ev.target.value);
     }
 
     const findLocationDebounce = useCallback(
         debounce((city: string) => {
-            console.log(city);
-            dispatch((fetchLocationsThunk(city)));
+            dispatch((fetchLocationOptionsThunk(city)));
         }, 1000),
         []
     );
 
     useEffect(() => {
-        setOptions(modifyOptions(locations!));
-        console.log('locations changed');
-    }, [locations]);
+        setOptions(modifyOptions(locationOptions!));
+        setIsLoading(false);
+    }, [locationOptions]);
 
     useEffect(() => {
-        console.log('selected city', selectedCity);
         if (selectedCity) {
-            dispatch(fetchForecastsThunk(selectedCity.cityKey))
-        } 
+            console.log('if is yues', selectedCity);
+            dispatch(fetchForecastsThunk(selectedCity.cityKey));
+        }
     }, [selectedCity])
 
     return (
@@ -67,17 +59,34 @@ const SearchLocation = () => {
                     Search your city
                 </Typography>
                 <Autocomplete
+                    className="custom-autocomplete"
+                    size='small'
+                    loading={isLoading}
                     options={options}
                     onChange={(_, value) => setSelectedCity(value)}
                     renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            onChange={handleQuery}
-                        />)}
+                        <div style={{ position: 'relative' }}>
+                            <TextField
+                                {...params}
+                                onChange={handleQuery}
+                            />
+                            {isLoading && <CircularProgress
+                                color="inherit"
+                                size={20}
+                                style={{
+                                    position: 'absolute',
+                                    top: '25%',
+                                    right: '12px',
+                                    transform: 'translateY(-50%)',
+                                }}
+                            />}
+                        </div>
+                    )
+
+                    }
                 />
             </Stack>
         </Box>
-
     )
 };
 
