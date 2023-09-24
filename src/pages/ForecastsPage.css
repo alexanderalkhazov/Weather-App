@@ -1,0 +1,12 @@
+.forecasts-container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+@media (max-width: 700px) {
+    .forecasts-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -12,23 +12,23 @@ const formatDate = (dateString: string) => {
 
 const modifyOptions = (locations: Location[]) => {
   if (!locations) return [];
+  console.log(locations);
   return locations.map((location: Location,index: number) => ({
-      id: index + 1,
-      label: location.LocalizedName,
-      cityKey: location.Key
+      id: location.Key,
+      label: `${location.Country.ID} ${location.LocalizedName}`
   }))
 }
 
 const setTempAndUnits = (celsiusValue: number, currentUnitState: string) => {
-  let modifiedFarenheit = `${Math.round(((celsiusValue * (9/5)) + (32)))} °F`;
-  let modifiedCelsius = `${Math.round(celsiusValue)} °C`;
+  const modifiedFarenheit = `${Math.floor(celsiusValue * (9/5) + 32)} °F`;
+  const modifiedCelsius = `${Math.floor(celsiusValue)} °C`;
   switch (currentUnitState) {
     case UnitsEnum.Celsius:
       return modifiedCelsius;
     case UnitsEnum.Fahrenheit:
       return modifiedFarenheit;
     default:
-      modifiedCelsius;
+      return modifiedCelsius;
   }
 };
 

@@ -1,5 +1,6 @@
 import { selectCurrentLocation } from "../../state/state slices/weatherSlice";
 import { useAppSelector } from "../../state/store/store";
+import './CurrentLocation.css';
 
 
 const CurrentLocation = () => {
@@ -7,8 +8,8 @@ const CurrentLocation = () => {
     const currLocation = useAppSelector(selectCurrentLocation);
 
     return (
-        <span>
-            Current Location : {currLocation?.LocalizedName}
+        <span className="curr-location">
+            Current Location : {currLocation ? currLocation.LocalizedName : 'No Location'}
         </span>
     )
 }
