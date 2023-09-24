@@ -2,11 +2,11 @@ import { Switch } from "@mui/material";
 import { AnyAction } from "redux";
 import { useAppDispatch } from "../../state/store/store";
 
-interface SwitcherProps {
+interface Props {
     switchFunction : () => AnyAction;
 }
 
-const Switcher = ({ switchFunction }: SwitcherProps) => {
+const Switcher = ({ switchFunction }: Props) => {
 
     const dispatch = useAppDispatch();
 

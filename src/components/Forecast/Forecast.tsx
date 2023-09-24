@@ -23,7 +23,11 @@ const Forecast = ({ forecast }: ForecastProps) => {
     return (
         forecast ? (
             <Box>
-                <Card>
+                <Card sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}>
                     <CardMedia
                         sx={{
                             maxWidth: 120
@@ -32,6 +36,13 @@ const Forecast = ({ forecast }: ForecastProps) => {
                         alt='day image'
                         image={switchCorrectImg(forecast.Day.Icon)}
                     />
+                    <Typography
+                        variant='body1'
+                        color={'text.secondary'}
+                    >
+                        {forecast.Day.IconPhrase}
+                    </Typography>
+
                     <CardMedia
                         sx={{
                             maxWidth: 120
@@ -40,6 +51,13 @@ const Forecast = ({ forecast }: ForecastProps) => {
                         alt='night image'
                         image={switchCorrectImg(forecast.Night.Icon)}
                     />
+                    <Typography
+                        variant='body1'
+                        color={'text.secondary'}
+                    >
+                        {forecast.Night.IconPhrase}
+                    </Typography>
+
                     <CardContent>
                         <Typography
                             gutterBottom
@@ -48,28 +66,16 @@ const Forecast = ({ forecast }: ForecastProps) => {
                             {formatDate(forecast.Date)}
                         </Typography>
                         <Typography
-                             variant='body1'
-                             color={'text.secondary'}
+                            variant='body1'
+                            color={'text.secondary'}
                         >
                             Minimum Temp : {setTempAndUnits(forecast.Temperature.Minimum.Value, units)}
-                        </Typography>
-                        <Typography
-                             variant='body1'
-                             color={'text.secondary'}
-                        >
-                            Maximum Temp : {setTempAndUnits(forecast.Temperature.Maximum.Value, units)}
-                        </Typography>
-                        <Typography
-                             variant='body1'
-                             color={'text.secondary'}
-                        >
-                            Day : {forecast.Day.IconPhrase}
                         </Typography>
                         <Typography
                             variant='body1'
                             color={'text.secondary'}
                         >
-                            Night : {forecast.Night.IconPhrase}
+                            Maximum Temp : {setTempAndUnits(forecast.Temperature.Maximum.Value, units)}
                         </Typography>
                         <Typography
                             variant='body1'

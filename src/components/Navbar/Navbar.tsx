@@ -1,37 +1,31 @@
-import {
-    AppBar,
-    Toolbar,
-    IconButton,
-    Typography,
-    Button,
-    Menu
-} from '@mui/material';
+import { Button, IconButton, Typography } from '@mui/material';
 import CloudIcon from '@mui/icons-material/Cloud';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useState } from 'react';
-import { renderNavItems } from '../../helpers/navbarHelpers';
 import Switcher from '../Switcher/Switcher';
 import { toggleTheme } from '../../state/state slices/themeSlice';
 import CurrentLocation from '../CurrentLocation/CurrentLocation';
+import './Navbar.css';
+import { Link } from 'react-router-dom';
+
+
+
+const menuItemList = [
+    {
+        link: '/forecasts',
+        linkText: 'Weather',
+    },
+    {
+        link: '/',
+        linkText: 'Favourites',
+    },
+]
+
+
 
 const Navbar = () => {
-
-    const [anchor, setAnchor] = useState<null | HTMLElement>(null);
-    const open = Boolean(anchor);
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchor(event.currentTarget);
-    }
-
-    const handleClose = () => {
-        setAnchor(null);
-    }
-
     return (
-        <AppBar
-            position='static'
-        >
-            <Toolbar>
+        <>
+            <nav>
+                <div className='weather-logo-container'>
                     <IconButton
                         size='large'
                         edge='start'
@@ -39,46 +33,35 @@ const Navbar = () => {
                     >
                         <CloudIcon />
                     </IconButton>
-                    <Typography
-                        variant='h6'
-                        component='div'
-                        sx={{
-                            flexGrow: 1
-                        }}
+                    <p>Weather App</p>
+                </div>
+
+                <CurrentLocation />
+
+                <div>
+                    < Link
+                        to={'/forecasts'}
                     >
-                        Weather App
-                    </Typography>
-                    <CurrentLocation />
-                    <Button
-                        color='inherit'
-                        id='resources-button'
-                        onClick={handleClick}
-                        endIcon={<KeyboardArrowDownIcon />}
+                        <Button>
+                            {'Weather'}
+                        </Button>
+                    </Link >
+                    < Link
+                        to={'/'}
                     >
-                        Options
-                    </Button>
-                    <Switcher switchFunction={toggleTheme} />
-                    <Menu
-                        id='resources-menu'
-                        anchorEl={anchor}
-                        open={open}
-                        MenuListProps={{
-                            'aria-labelledby': 'resources-button',
-                        }}
-                        onClose={handleClose}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'right'
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right'
-                        }}
-                    >
-                        {renderNavItems(handleClose)}
-                    </Menu>
-            </Toolbar>
-        </AppBar>
+                        <Button>
+                            {'Favourites'}
+                        </Button>
+                    </Link >
+                </div>
+
+
+                <Switcher
+                    switchFunction={toggleTheme}
+                />
+            </nav>
+
+        </>
     )
 }
 

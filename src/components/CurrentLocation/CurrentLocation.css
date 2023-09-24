@@ -1,0 +1,5 @@
+@media (max-width: 700px) {
+    .curr-location {
+        font-size: 0.8rem;
+    }
+}

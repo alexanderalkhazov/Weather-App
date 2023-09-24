@@ -12,19 +12,19 @@ const Forecasts = () => {
   const getAllForecasts = async () => {
     const payLoadCoords = await dispatch(fetchLocationByCoordsThunk());
     const location = payLoadCoords.payload as Location;
-    await dispatch(fetchForecastsThunk(location.Key));
+    dispatch(fetchForecastsThunk(location.Key));
   }
 
   useEffect(() => {
     getAllForecasts();
-  }, [])
+  }, []);
 
 
   return (
     <>
       {weather ? weather.DailyForecasts.map(forecast => (
         <Forecast key={forecast.Date} forecast={forecast} />
-      )) : <p>No Weather Data was Found.</p>}
+      )) : <p>Loading...</p>}
     </>
   )
 }
