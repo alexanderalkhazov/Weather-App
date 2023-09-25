@@ -9,7 +9,7 @@ const CurrentLocation = () => {
 
     return (
         <span className="curr-location">
-            Current Location : {currLocation ? currLocation.LocalizedName : 'No Location'}
+            Current Location: {currLocation ? currLocation.LocalizedName : 'No Location'}
         </span>
     )
 }

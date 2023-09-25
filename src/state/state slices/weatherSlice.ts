@@ -1,15 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getCoords } from "../../services/getCoords";
+import { ThunkStatusEnum } from "../../common/types/enums";
+import { RootState } from "../store/store";
+import { WeatherState } from "../../common/types/stateTypes";
 import {
   getAutoCompleteResults,
   getCityCodeByCoords,
   getForecastByCityCode,
 } from "../../services/weatherRequests";
-import { getCoords } from "../../services/getCoords";
-import { ThunkStatusEnum } from "../../common/types/enums";
-import { RootState } from "../store/store";
-import { WeatherState } from "../../common/types/stateTypes";
 
-export const fetchForecastsThunk = createAsyncThunk(
+const fetchForecastsThunk = createAsyncThunk(
   "fetchWeatherThunk",
   async (location?: string) => {
     if (location) {
@@ -19,7 +19,7 @@ export const fetchForecastsThunk = createAsyncThunk(
   }
 );
 
-export const fetchLocationByCoordsThunk = createAsyncThunk(
+const fetchLocationByCoordsThunk = createAsyncThunk(
   "fetchLocationByCoordsThunk",
   async () => {
     const geoLoaction = await getCoords();
@@ -28,7 +28,7 @@ export const fetchLocationByCoordsThunk = createAsyncThunk(
   }
 );
 
-export const fetchLocationOptionsThunk = createAsyncThunk(
+const fetchLocationOptionsThunk = createAsyncThunk(
   "fetchLocationOptionsThunk",
   async (city: string) => {
     const locationOptions = await getAutoCompleteResults(city);
@@ -90,18 +90,28 @@ const forecastsSlice = createSlice({
   },
 });
 
-export const selectAllForecasts = (state: RootState) =>
+const selectAllForecasts = (state: RootState) =>
   state.forecastsReducer.currentWeather;
 
-export const selectCurrentLocation = (state: RootState) =>
+const selectCurrentLocation = (state: RootState) =>
   state.forecastsReducer.currentLocation;
 
-export const selectForecastStatus = (state: RootState) =>
+const selectForecastStatus = (state: RootState) =>
   state.forecastsReducer.status;
 
-export const selectLocations = (state: RootState) =>
-  state.forecastsReducer.locations;
+const selectLocations = (state: RootState) => state.forecastsReducer.locations;
 
-export const { setCurrentWeather } = forecastsSlice.actions;
+const { setCurrentWeather } = forecastsSlice.actions;
+
+export {
+  selectAllForecasts,
+  selectCurrentLocation,
+  selectForecastStatus,
+  selectLocations,
+  setCurrentWeather,
+  fetchForecastsThunk,
+  fetchLocationByCoordsThunk,
+  fetchLocationOptionsThunk,
+};
 
 export default forecastsSlice.reducer;
