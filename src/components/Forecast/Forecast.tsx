@@ -58,7 +58,11 @@ const Forecast = ({ forecast }: ForecastProps) => {
                         {forecast.Night.IconPhrase}
                     </Typography>
 
-                    <CardContent>
+                    <CardContent sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
+                    }}>
                         <Typography
                             gutterBottom
                             variant='h5'

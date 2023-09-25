@@ -13,7 +13,6 @@ import Switcher from './components/Switcher/Switcher';
 import './App.css';
 
 const App = () => {
-
   const currentTheme = useAppSelector(selectCurrentTheme);
 
   return (
