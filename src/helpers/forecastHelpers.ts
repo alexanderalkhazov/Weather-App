@@ -12,7 +12,6 @@ const formatDate = (dateString: string) => {
 
 const modifyOptions = (locations: Location[]) => {
   if (!locations) return [];
-  console.log(locations);
   return locations.map((location: Location) => ({
       id: location.Key,
       label: `${location.Country.ID} ${location.LocalizedName}`
