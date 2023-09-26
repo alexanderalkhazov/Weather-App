@@ -1,3 +1,4 @@
+import { CircularProgress } from '@mui/material';
 import Forecast from '../Forecast/Forecast';
 import { useForecasts } from './hooks/forecastsHook';
 
@@ -9,7 +10,16 @@ const Forecasts = () => {
     <>
       {weather ? weather.DailyForecasts.map(forecast => (
         <Forecast key={forecast.Date} forecast={forecast} />
-      )) : <p>Loading...</p>}
+      )) : <CircularProgress
+        color="inherit"
+        size={40}
+        style={{
+          transform: 'translateY(-50%)',
+          position: 'absolute',
+          top: '40%'
+        }}
+      />}
+
     </>
   )
 }
