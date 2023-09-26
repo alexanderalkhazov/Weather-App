@@ -8,10 +8,10 @@ const useForecasts = () => {
   const weather: WeatherData | null = useAppSelector(selectAllForecasts);
 
   const getAllForecasts = async () => {
-    const payLoadCoords = await dispatch(fetchLocationByCoordsThunk());
-    const location = payLoadCoords.payload;
-    dispatch(fetchForecastsThunk(location.Key));
-  };
+      const payLoadCoords = await dispatch(fetchLocationByCoordsThunk());
+      const location = payLoadCoords.payload;
+      dispatch(fetchForecastsThunk(location.Key));
+    };
 
   useEffect(() => {
     getAllForecasts();

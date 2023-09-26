@@ -27,6 +27,7 @@ const Forecast = ({ forecast }: ForecastProps) => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
+                    padding: '10px'
                 }}>
                     <CardMedia
                         sx={{

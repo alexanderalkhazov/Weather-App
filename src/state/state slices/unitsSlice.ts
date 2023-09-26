@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UnitsEnum } from '../../common/types/enums';
+import { UnitsEnum } from "../../common/types/enums";
 import { UnitsState } from "../../common/types/stateTypes";
 
 const initialState: UnitsState = {
@@ -11,13 +11,18 @@ const unitsSlice = createSlice({
   initialState,
   reducers: {
     toggleUnits: (state) => {
-      state.units = state.units === UnitsEnum.Celsius ? UnitsEnum.Fahrenheit : UnitsEnum.Celsius;
+      state.units =
+        state.units === UnitsEnum.Celsius
+          ? UnitsEnum.Fahrenheit
+          : UnitsEnum.Celsius;
     },
   },
 });
 
-export const selectUnits = (state: any) => state.unitsReducer.units;
+const selectUnits = (state: any) => state.unitsReducer.units;
 
-export const { toggleUnits } = unitsSlice.actions;
+const { toggleUnits } = unitsSlice.actions;
 
-export default unitsSlice.reducer; 
+export { selectUnits, toggleUnits };
+
+export default unitsSlice.reducer;
