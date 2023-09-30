@@ -6,9 +6,9 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 const store = configureStore({
     reducer: {
-        themeReducer: themeReducder,
-        forecastsReducer: forecastsReducer,
-        unitsReducer: unitsReducer
+        themeState: themeReducder,
+        weatherState: forecastsReducer,
+        unitsState: unitsReducer
     }
 });
 

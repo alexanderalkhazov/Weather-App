@@ -7,7 +7,6 @@ interface Props {
 }
 
 const Switcher = ({ switchFunction }: Props) => {
-
     const dispatch = useAppDispatch();
 
     return (

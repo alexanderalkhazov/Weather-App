@@ -2,10 +2,14 @@ import { Autocomplete, TextField, CircularProgress } from '@mui/material';
 import { useCityOptions } from './hooks/searchLocationHooks';
 import './SearchLocation.css';
 
-
 const SearchLocation = () => {
 
-    const {isLoading, options, setSelectedCity, handleQuery} = useCityOptions();
+    const {
+        isLoading,
+        options,
+        setSelectedCity,
+        handleQuery
+    } = useCityOptions();
 
     return (
         <div className='search-container'>

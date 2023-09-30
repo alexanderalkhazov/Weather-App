@@ -19,7 +19,7 @@ const unitsSlice = createSlice({
   },
 });
 
-const selectUnits = (state: any) => state.unitsReducer.units;
+const selectUnits = (state: any) => state.unitsState.units;
 
 const { toggleUnits } = unitsSlice.actions;
 
