@@ -1,18 +1,18 @@
 import { IconButton } from '@mui/material';
 import CloudIcon from '@mui/icons-material/Cloud';
 import Switcher from '../Switcher/Switcher';
-import { selectCurrentTheme, toggleTheme } from '../../state/state slices/themeSlice';
+import { selectTheme, toggleTheme } from '../../state/state slices/themeSlice';
 import CurrentLocation from '../CurrentLocation/CurrentLocation';
-import './Navbar.css';
 import { useAppSelector } from '../../state/store/store';
 import { ThemeEnum } from '../../common/types/enums';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import './Navbar.css';
 
 const Navbar = () => {
-    
-    const currentTheme = useAppSelector(selectCurrentTheme);
-    
+
+    const { theme } = useAppSelector(selectTheme);
+
     return (
         <>
             <nav>
@@ -30,8 +30,8 @@ const Navbar = () => {
                 <div className='dark-mode-switch-container'>
                     <Switcher
                         switchFunction={toggleTheme}
-                        />
-                        {currentTheme === ThemeEnum.Light ? <LightModeIcon /> : <DarkModeIcon />}
+                    />
+                    {theme === ThemeEnum.Light ? <LightModeIcon /> : <DarkModeIcon />}
                 </div>
             </nav>
 

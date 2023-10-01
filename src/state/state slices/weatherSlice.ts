@@ -9,7 +9,7 @@ import {
   getForecastByCityCode,
 } from "../../services/weatherRequests";
 
-const fetchForecastsThunk = createAsyncThunk(
+const fetchForecasts = createAsyncThunk(
   "fetchWeatherThunk",
   async (location?: string) => {
     if (location) {
@@ -19,7 +19,7 @@ const fetchForecastsThunk = createAsyncThunk(
   }
 );
 
-const fetchLocationByCoordsThunk = createAsyncThunk(
+const fetchLocationByCoords = createAsyncThunk(
   "fetchLocationByCoordsThunk",
   async () => {
     const geoLoaction = await getCoords();
@@ -28,7 +28,7 @@ const fetchLocationByCoordsThunk = createAsyncThunk(
   }
 );
 
-const fetchLocationOptionsThunk = createAsyncThunk(
+const fetchLocations = createAsyncThunk(
   "fetchLocationOptionsThunk",
   async (city: string) => {
     const locationOptions = await getAutoCompleteResults(city);
@@ -42,7 +42,6 @@ const initialState: WeatherState = {
   status: ThunkStatusEnum.IDLE,
   error: false,
   locations: null,
-  favourites: null,
 };
 
 const forecastsSlice = createSlice({
@@ -54,64 +53,52 @@ const forecastsSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(fetchLocationByCoordsThunk.fulfilled, (state, action) => {
+    builder.addCase(fetchLocationByCoords.fulfilled, (state, action) => {
       state.status = ThunkStatusEnum.SUCCESS;
       state.currentLocation = action.payload;
     });
-    builder.addCase(fetchLocationByCoordsThunk.pending, (state, _) => {
+    builder.addCase(fetchLocationByCoords.pending, (state, _) => {
       state.status = ThunkStatusEnum.LOADING;
     });
-    builder.addCase(fetchLocationByCoordsThunk.rejected, (state, action) => {
+    builder.addCase(fetchLocationByCoords.rejected, (state, action) => {
       state.status = ThunkStatusEnum.FAILED;
       state.error = action.error ? true : false;
     });
-    builder.addCase(fetchLocationOptionsThunk.fulfilled, (state, action) => {
+    builder.addCase(fetchLocations.fulfilled, (state, action) => {
       state.status = ThunkStatusEnum.SUCCESS;
       state.locations = action.payload;
     });
-    builder.addCase(fetchLocationOptionsThunk.pending, (state, _) => {
+    builder.addCase(fetchLocations.pending, (state, _) => {
       state.status = ThunkStatusEnum.LOADING;
     });
-    builder.addCase(fetchLocationOptionsThunk.rejected, (state, action) => {
+    builder.addCase(fetchLocations.rejected, (state, action) => {
       state.status = ThunkStatusEnum.FAILED;
       state.error = action.error ? true : false;
     });
-    builder.addCase(fetchForecastsThunk.fulfilled, (state, action) => {
+    builder.addCase(fetchForecasts.fulfilled, (state, action) => {
       state.status = ThunkStatusEnum.SUCCESS;
       state.currentWeather = action.payload;
     });
-    builder.addCase(fetchForecastsThunk.pending, (state, _) => {
+    builder.addCase(fetchForecasts.pending, (state, _) => {
       state.status = ThunkStatusEnum.LOADING;
     });
-    builder.addCase(fetchForecastsThunk.rejected, (state, action) => {
+    builder.addCase(fetchForecasts.rejected, (state, action) => {
       state.status = ThunkStatusEnum.FAILED;
       state.error = action.error ? true : false;
     });
   },
 });
 
-const selectAllForecasts = (state: RootState) =>
-  state.forecastsReducer.currentWeather;
-
-const selectCurrentLocation = (state: RootState) =>
-  state.forecastsReducer.currentLocation;
-
-const selectForecastStatus = (state: RootState) =>
-  state.forecastsReducer.status;
-
-const selectLocations = (state: RootState) => state.forecastsReducer.locations;
+const selectWeather = (state: RootState) => state.weatherState;
 
 const { setCurrentWeather } = forecastsSlice.actions;
 
 export {
-  selectAllForecasts,
-  selectCurrentLocation,
-  selectForecastStatus,
-  selectLocations,
+  selectWeather,
   setCurrentWeather,
-  fetchForecastsThunk,
-  fetchLocationByCoordsThunk,
-  fetchLocationOptionsThunk,
+  fetchForecasts,
+  fetchLocationByCoords,
+  fetchLocations,
 };
 
 export default forecastsSlice.reducer;

@@ -16,5 +16,4 @@ export interface WeatherState {
   status: ThunkStatusEnum;
   error: boolean;
   locations: Location[] | null;
-  favourites: WeatherData | null;
 }

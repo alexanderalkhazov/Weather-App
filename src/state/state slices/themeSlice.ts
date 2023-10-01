@@ -6,11 +6,11 @@ const initialState: ThemeState = {
   theme: ThemeEnum.Light,
 };
 
-const setCorrectTheme = (state: ThemeState) => {
-  return state.theme === ThemeEnum.Light
-    ? { ...state, theme: ThemeEnum.Dark }
-    : { ...state, theme: ThemeEnum.Light };
-};
+const setCorrectTheme = (
+  state: ThemeState
+) => state.theme === ThemeEnum.Light ? 
+{ ...state, theme: ThemeEnum.Dark }: 
+{ ...state, theme: ThemeEnum.Light };
 
 const themeSlice = createSlice({
   name: "theme",
@@ -22,8 +22,8 @@ const themeSlice = createSlice({
 
 const { toggleTheme } = themeSlice.actions;
 
-const selectCurrentTheme = (state: any) => state.themeReducer.theme;
+const selectTheme = (state: any) => state.themeState;
 
-export { selectCurrentTheme, toggleTheme };
+export { selectTheme, toggleTheme };
 
 export default themeSlice.reducer;

@@ -1,21 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { CityOption } from "../../../common/types/locationKeyTypes";
 import { useAppDispatch, useAppSelector } from "../../../state/store/store";
-import { fetchForecastsThunk, fetchLocationOptionsThunk, selectLocations } from "../../../state/state slices/weatherSlice";
+import { fetchForecasts, fetchLocations, selectWeather } from "../../../state/state slices/weatherSlice";
 import { debounce } from "lodash";
-import { modifyOptions } from "../../../helpers/forecastHelpers";
+import { modifyOptions } from "../../../utils/forecastHelpers";
 
 export const useCityOptions = () => {
     const dispatch = useAppDispatch();
-
-    const locationOptions = useAppSelector(selectLocations);
-
+    const {locations} = useAppSelector(selectWeather);
     const [options, setOptions] = useState<readonly CityOption[] | []>([]);
-
     const [selectedCity, setSelectedCity] = useState<CityOption | null>(null);
-
     const [isLoading, setIsLoading] = useState<boolean>(true);
-
 
     const handleQuery = (ev: React.ChangeEvent<HTMLInputElement>) => {
         setIsLoading(true);
@@ -24,20 +19,18 @@ export const useCityOptions = () => {
 
     const findLocationDebounce = useCallback(
         debounce((city: string) => {
-            dispatch((fetchLocationOptionsThunk(city)));
+            dispatch((fetchLocations(city)));
         }, 1000),[]
     );
 
     useEffect(() => {
-        setOptions(modifyOptions(locationOptions!));
+        setOptions(modifyOptions(locations!));
         setIsLoading(false);
-    }, [locationOptions]);
-
-
+    }, [locations]);
 
     useEffect(() => {
         if (selectedCity) { 
-            dispatch(fetchForecastsThunk(selectedCity.id));
+            dispatch(fetchForecasts(selectedCity.id));
         }
     }, [selectedCity]);
 

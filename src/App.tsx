@@ -5,7 +5,7 @@ import ForecastsPage from './pages/ForecastsPage';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material';
 import { lightTheme, darkTheme } from './common/themes/themes';
-import { selectCurrentTheme } from './state/state slices/themeSlice';
+import { selectTheme } from './state/state slices/themeSlice';
 import { ThemeEnum } from './common/types/enums';
 import { toggleUnits } from './state/state slices/unitsSlice';
 import { useAppSelector } from './state/store/store';
@@ -13,10 +13,10 @@ import Switcher from './components/Switcher/Switcher';
 import './App.css';
 
 const App = () => {
-  const currentTheme = useAppSelector(selectCurrentTheme);
+  const {theme} = useAppSelector(selectTheme);
 
   return (
-    <ThemeProvider theme={currentTheme === ThemeEnum.Light ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme === ThemeEnum.Light ? lightTheme : darkTheme}>
       <CssBaseline />
       <Navbar />
       <SearchLocation />

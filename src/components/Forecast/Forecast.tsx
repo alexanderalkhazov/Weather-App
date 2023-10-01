@@ -6,11 +6,11 @@ import {
     Typography
 } from '@mui/material';
 import { DailyForecast } from '../../common/types/forecastTypes';
-import { formatDate } from '../../helpers/forecastHelpers';
+import { formatDate } from '../../utils/forecastHelpers';
 import { selectUnits } from '../../state/state slices/unitsSlice';
-import { setTempAndUnits } from '../../helpers/forecastHelpers';
+import { setTempAndUnits } from '../../utils/forecastHelpers';
 import { useAppSelector } from '../../state/store/store';
-import { switchCorrectImg } from '../../helpers/weatherIconHelpers';
+import { switchCorrectImg } from '../../utils/weatherIconHelpers';
 
 interface ForecastProps {
     forecast?: DailyForecast;
